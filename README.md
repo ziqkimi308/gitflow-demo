@@ -4,6 +4,34 @@
 
 Builds a Git repository following the GitFlow branching model, simulating a team environment with features, pull requests, merge conflicts, branch protection rules, and release tagging. The project demonstrates how to safely manage production-ready code (`main`), integrate features (`develop`), handle emergency fixes (`hotfix`), and enforce team discipline via GitHub branch protection rules.
 
+## Project Summary
+
+- Simulates a team environment where multiple developers work on different features at the same time.
+
+- Follows the **GitFlow branching model** — `main` for production, `develop` for integration, and temporary branches for features, releases, and hotfixes.
+
+- Protects the main branches using **GitHub Branch Protection Rules**, forcing all changes to go through Pull Requests.
+
+- Creates two parallel features:
+  - **Feature A** enhances the `greet()` and `farewell()` functions.
+  - **Feature B** adds a new configuration module.
+
+- Triggers a **merge conflict** when Feature B is merged because both features modified the same lines of code.
+
+- Resolves the conflict **locally** by merging the latest `develop` into the feature branch, then pushes the fix to GitHub.
+
+- Prepares a **release** using a `release/0.1.0` branch, updates the `CHANGELOG.md`, and merges it into `main`.
+
+- Tags the release with an **annotated tag** (`v0.1.0`) and creates a GitHub Release from it.
+
+- Simulates a **production emergency** with a `hotfix` branch, applies a critical bug fix, and merges it directly into `main`.
+
+- Syncs the hotfix back into `develop` so the fix is not lost in the next release.
+
+- Tags the hotfix (`v0.1.1`) to mark the patch version.
+
+- Demonstrates essential Git recovery commands like `git undo`, `git restore`, and `git bisect`.
+
 ## Architecture
 
 ```
@@ -98,49 +126,73 @@ git merge develop  # Conflict appears as expected
 
 ### Git installation and global configuration
 ![Git Version](./screenshots/verified_git.png)
+
 ![Git Config List](./screenshots/git_config_list.png)
+
 ![Git Config All](./screenshots/git_config_all.png)
+
 ![Gitconfig File](./screenshots/gitconfig_file.png)
 
 ### Repository initialization and remote setup
 ![Git Init](./screenshots/git_init.png)
+
 ![Git Add and Commit](./screenshots/git_add_commit.png)
+
 ![Git Remote Add and Push](./screenshots/git_remote_add_push.png)
+
+### Add branch 'develop'
 ![Git Checkout Develop](./screenshots/git_checkout_branch_develop_and_push.png)
 
 ### Branch protection rules
-![Protection Rule Main](./screenshots/branch_protection_rule_main.png)
-![Protection Rule Develop](./screenshots/branch_protection_rule_develop.png)
 ![Protection Rule General](./screenshots/branch_protection_rule.png)
+
+![Protection Rule Main](./screenshots/branch_protection_rule_main.png)
+
+![Protection Rule Develop](./screenshots/branch_protection_rule_develop.png)
 
 ### Feature A workflow
 ![New Branch Feature A](./screenshots/add_new_branch_featureA_make_changes_add_commit_push.png)
+
 ![Pull Request Feature A](./screenshots/pull_requests_featureA.png)
+
 ![PR Feature A Blocked](./screenshots/pull_requests_featureA_merge_blocked_byrules.png)
+
 ![PR Feature A Unblocked](./screenshots/pull_requests_featureA_merge_no_longer_blocked.png)
+
 ![PR Feature A Merged](./screenshots/pull_requests_featureA_success_merged_closed.png)
 
 ### Feature B workflow and conflict resolution
 ![New Branch Feature B](./screenshots/add_new_branch_featureB_make_changes_addnew_configpy_add_commit_push.png)
+
 ![PR Feature B Conflict](./screenshots/pull_requests_featureB_has_conflict.png)
+
 ![Conflict in Local Editor](./screenshots/conflict_in_local_editor.png)
+
 ![Try Merge and Solve Conflict](./screenshots/try_merge_and_solve_conflict_locally.png)
+
 ![Modifying Code to Resolve Conflict](./screenshots/modifying_code_to_resolve_conflict.png)
+
 ![Git Add Commit Resolved Conflict](./screenshots/git_add_commit_resolved_conflict.png)
+
 ![PR Feature B Merged](./screenshots/pull_requests_featureB_successful_merged_closed.png)
 
 ### Release workflow
 ![New Branch Release](./screenshots/add_new_branch_release.png)
+
 ![PR Release Branch](./screenshots/pull_requests_releaseBranch.png)
+
 ![PR Release Merged](./screenshots/pull_requests_releaseBranch_successful_merged_closed.png)
+
 ![Merge Release with Develop via CLI](./screenshots/next_merge_releaseBranch_with_develop_but_using_cli.png)
 
 ### Tagging and GitHub Release
 ![Git Tag](./screenshots/git_tag.png)
+
 ![GitHub Release from Tag](./screenshots/github_created_releases_from_tag.png)
 
 ### Hotfix workflow
 ![PR Hotfix to Main](./screenshots/pull_requests_hotfix_to_main.png)
+
 ![Git Merge Main to Develop](./screenshots/git_merge_main_to_develop.png)
 
 ## Notes & Interesting Details
